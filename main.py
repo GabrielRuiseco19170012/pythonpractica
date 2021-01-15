@@ -1,3 +1,3 @@
-from Menu import Menu
+from clases.Menu import Menu
 
 menu = Menu()

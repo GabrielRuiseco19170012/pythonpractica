@@ -34,6 +34,9 @@ class Material:
         self.lista[index] = materoal
         return True
 
+    def updateCantidad(self, cantidad):
+        self.cantidad=cantidad
+
     def getObject(self, index=None, name=None):
         if index != None:
             return self.lista[index]
