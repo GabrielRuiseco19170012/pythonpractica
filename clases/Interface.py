@@ -1,9 +1,22 @@
 from clases.Material import Material
 from clases.Usuario import Usuario
 import copy
+import pickle
 
 mlist = Material()
 ulist = Usuario()
+
+try:
+    with open("Material.obj", "rb") as f:
+        mlist = pickle.load(f)
+except:
+    print("Sin datos")
+
+try:
+    with open("Usuario.obj", "rb") as f:
+        ulist = pickle.load(f)
+except:
+    print("Sin Datos")
 
 
 class Interface:
@@ -47,11 +60,11 @@ class Interface:
             m = mlist.getObject(None, b)
             mi = mlist.getIndex(b)
             if m != None:
-                m.updateCantidad(m.cantidad+int(c))
+                m.updateCantidad(m.cantidad + int(c))
                 mlist.updateObject(mi, m)
                 print(str(m))
                 mat = u.getObject(None, b)
-                mat.updateCantidad(mat.cantidad-(int(c)*2))
+                mat.updateCantidad(mat.cantidad - (int(c) * 2))
                 if mat.cantidad < 1:
                     u.lista.pop(mi)
                 else:
@@ -110,3 +123,10 @@ class Interface:
     def mostrarListaMat():
         for obj in mlist.lista:
             print("\nNombre: " + str(obj.nom) + ", cantidad: " + str(obj.cantidad))
+
+    @staticmethod
+    def guardarCambios():
+        with open("Material.obj", "wb") as f:
+            pickle.dump(mlist, f)
+        with open("Usuario.obj", "wb") as f:
+            pickle.dump(ulist, f)
