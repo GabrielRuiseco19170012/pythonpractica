@@ -1,57 +1,73 @@
 from clases.Interface import Interface
 import sys
 
+inter = Interface()
+
 
 class Menu:
 
     def __init__(self):
         self.showMenu()
 
-    def endProg(self):
+    @staticmethod
+    def endProg():
         print("\n")
         print("Fin del programa")
         sys.exit()
 
     def showMenu(self):
         print(
-            "\n\nMENU DEL CENTRO\n\n1) Pedir material\n2) Regresar material\n3) Nuevo usuario\n4) Nuevo material \n5) Mostrar usuario \n6) Mostrar material \n7) Mostrar lista usuarios \n8) Mostrar lista materiales \n9) Salir")
+            "\n\nMENU DEL CENTRO\n"
+            "\n1) Pedir material"
+            "\n2) Regresar material"
+            "\n3) Nuevo usuario"
+            "\n4) Nuevo material "
+            "\n5) Mostrar usuario "
+            "\n6) Mostrar material "
+            "\n7) Mostrar lista usuarios "
+            "\n8) Mostrar lista materiales "
+            "\n9) Cambiar almacenamiento"
+            "\n10) Salir")
         opc = input("\nSeleccione una opcion: ")
-        if int(opc) < 10:
-            while opc != "9":
+        if int(opc) < 11 and int(opc) > 0:
+            while opc != "10":
                 if opc == "1":
-                    Interface.pedirMaterial()
+                    inter.lendMaterial()
 
                     self.showMenu()
                 elif opc == "2":
-                    Interface.regresarMaterial()
+                    inter.returnMaterial()
 
                     self.showMenu()
                 elif opc == "3":
-                    Interface.nuevoUsuario()
+                    inter.saveUser()
 
                     self.showMenu()
                 elif opc == "4":
-                    Interface.nuevoMaterial()
+                    inter.saveMaterial()
 
                     self.showMenu()
                 elif opc == "5":
-                    Interface.mostrarUsuario()
+                    inter.showUser()
 
                     self.showMenu()
                 elif opc == "6":
-                    Interface.mostrarMaterial()
+                    inter.showMaterial()
 
                     self.showMenu()
                 elif opc == "7":
-                    Interface.mostrarListaUsr()
+                    inter.showUsrList()
 
                     self.showMenu()
                 elif opc == "8":
-                    Interface.mostrarListaMat()
+                    inter.showMaterials()
+
+                    self.showMenu()
+                elif opc == "9":
+                    inter.selectStorage()
 
                     self.showMenu()
             else:
-                Interface.guardarCambios()
                 self.endProg()
         else:
             print("\nOpcion no valida")

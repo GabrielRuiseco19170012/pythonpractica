@@ -1,48 +1,23 @@
 class Material:
 
-    def __init__(self):
-        self.nom = ''
-        self.cantidad = 0
-        self.lista = []
+    def __init__(self, name='', quantity='', date=''):
+        self.name = name
+        self.quantity = quantity
+        self.date_out = date
+        self.date_in = None
 
-    def __str__(self):
-        if len(self.lista) > 0:
-            return str(len(self.lista)) + ' Registros'
-        return self.nom + ' ' + str(self.cantidad)
-
-    def setData(self, nombre, cantidad):
-        self.nom = nombre
-        self.cantidad = cantidad
+    def setData(self, name=None, quantity=None, date_out=None, date_in=None):
+        if name is not None:
+            self.name = name
+        if quantity is not None:
+            self.quantity = quantity
+        if date_out is not None:
+            self.date_out = date_out
+        if date_in is not None:
+            self.date_in = date_in
 
     def getData(self):
-        return self.nom, self.cantidad
+        return self.name, self.quantity, self.date_out, self.date_in
 
-    def getIndex(self, name):
-        for obj in self.lista:
-            if obj.nom == name:
-                return self.lista.index(obj)
-
-    def addObject(self, materoal):
-        self.lista.append(materoal)
-        return len(self.lista)
-
-    def removeObject(self, index):
-        self.lista.pop(index)
-        return len(self.lista)
-
-    def updateObject(self, index, materoal):
-        self.lista[index] = materoal
-        return True
-
-    def updateCantidad(self, cantidad):
-        self.cantidad=cantidad
-
-    def getObject(self, index=None, name=None):
-        if index != None:
-            return self.lista[index]
-        elif name != None:
-            for obj in self.lista:
-                if obj.nom == name:
-                    return obj
-        else:
-            return None
+    # def updateQuantity(self, quantity):
+    #     self.quantity = quantity
